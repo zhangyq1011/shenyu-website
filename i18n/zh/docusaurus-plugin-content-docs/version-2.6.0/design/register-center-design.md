@@ -62,7 +62,7 @@ shenyu
 
 `shenyu-admin`使用`Zookeeper`的`Watch`机制，对数据的更新和删除等事件进行监听，数据变更后触发对应的注册处理逻辑。在收到`MetaDataRegisterDTO`节点变更后，触发`selector`和`rule`的数据变更和数据同步事件发布。收到`URIRegisterDTO`节点变更后，触发`selector`的`upstream`的更新和数据同步事件发布。
 
-## Etcd注册原理
+### Etcd注册原理
 
 `Etcd`的键值存储结构如下：
 
@@ -84,7 +84,7 @@ shenyu
 
 `shenyu-admin`使用`Etcd`的`Watch`机制，对数据的更新和删除等事件进行监听，数据变更后触发对应的注册处理逻辑。在收到`MetaDataRegisterDTO`节点变更后，触发`selector`和`rule`的数据变更和数据同步事件发布。收到`URIRegisterDTO`节点变更后，触发`selector`的`upstream`的更新和数据同步事件发布。
 
-## Consul注册原理
+### Consul注册原理
 
 `Consul`的`Metadata`和`URI`分两部分存储，`URIRegisterDTO`随着服务注册记录在服务的`metadata`里，服务下线时随着服务节点一起消失。
 
@@ -104,7 +104,7 @@ shenyu
 
 `shenyu-admin`通过监听`Catalog`和`KeyValue`的`index`的变化，来感知数据的更新和删除，数据变更后触发对应的注册处理逻辑。在收到`MetaDataRegisterDTO`节点变更后，触发`selector`和`rule`的数据变更和数据同步事件发布。收到`URIRegisterDTO`节点变更后，触发`selector`的`upstream`的更新和数据同步事件发布。
 
-## Nacos注册原理
+### Nacos注册原理
 
 `Nacos`注册分为两部分：`URI` 和 `Metadata`。`URI` 使用实例注册方式，在服务异常的情况下，相关`URI`数据节点会自动进行删除，并发送事件到订阅端，订阅端进行相关的下线处理。`Metadata` 使用配置注册方式，没有相关上下线操作，当有`URI`实例注册时，会相应的发布`Metadata`配置，订阅端监听数据变化，进行更新处理。
 
